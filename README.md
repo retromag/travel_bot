@@ -31,8 +31,8 @@
 1. Клонируем репозиторий:
 
 
-git clone https://github.com/username/tg_bot_for_travelling_agency.git
-cd tg_bot_for_travelling_agency
+git clone https://github.com/retromag/travel_bot
+cd travel_bot
 
 2. Создаём виртуальное окружение:
 python -m venv venv
@@ -50,7 +50,7 @@ DB_NAME = "название_бд"
 DB_HOST = "localhost"
 DB_PORT = 5432
 
-🗂 Структура проекта
+## 🗂 Структура проекта
 travel_bot/
 ├── bot.py
 ├── config.py
