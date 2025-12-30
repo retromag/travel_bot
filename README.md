@@ -30,7 +30,7 @@
 
 1. Клонируем репозиторий:
 
-```bash
+
 git clone https://github.com/username/tg_bot_for_travelling_agency.git
 cd tg_bot_for_travelling_agency
 
