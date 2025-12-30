@@ -64,7 +64,7 @@ pip install -r requirements.txt
 │ ├── tour_keyboards.py
 │ └── constants.py
 └── requirements.txt
-
+```
 ## 🛠 Используемые технологии
 
 Python 3.11+
