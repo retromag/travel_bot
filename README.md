@@ -49,7 +49,7 @@ pip install -r requirements.txt
  DB_PORT = 5432
 
 ## 🗂 Структура проекта
-travel_bot/
+```travel_bot/
 ├── bot.py
 ├── config.py
 ├── database.py
