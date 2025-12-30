@@ -28,21 +28,20 @@
 
 ## ⚙️ Установка
 
-1. Клонируем репозиторий:
-
+# 1. Клонируем репозиторий:
 
 git clone https://github.com/retromag/travel_bot
 cd travel_bot
 
-2. Создаём виртуальное окружение:
+# 2. Создаём виртуальное окружение:
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
 venv\Scripts\activate     # Windows
 
-3. Устанавливаем зависимости:
+# 3. Устанавливаем зависимости:
 pip install -r requirements.txt
 
-4. Настраиваем .env или config.py с токеном бота и данными для PostgreSQL:
+# 4. Настраиваем .env или config.py с токеном бота и данными для PostgreSQL:
 API_TOKEN = "ваш_токен_бота"
 DB_USER = "postgres"
 DB_PASSWORD = "пароль"
@@ -56,18 +55,18 @@ travel_bot/
 ├── config.py
 ├── database.py
 ├── handlers/
-│   ├── __init__.py
-│   ├── start.py
-│   ├── consultation.py
-│   └── tour.py
+│ ├── init.py
+│ ├── start.py
+│ ├── consultation.py
+│ └── tour.py
 ├── keyboards/
-│   ├── __init__.py
-│   ├── main_menu.py
-│   ├── tour_keyboards.py
-│   └── constants.py
+│ ├── init.py
+│ ├── main_menu.py
+│ ├── tour_keyboards.py
+│ └── constants.py
 └── requirements.txt
 
-🛠 Используемые технологии
+## 🛠 Используемые технологии
 
 Python 3.11+
 
@@ -77,5 +76,5 @@ PostgreSQL
 
 asyncpg
 
-⚡ Запуск
+## ⚡ Запуск
 python bot.py
