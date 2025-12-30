@@ -34,15 +34,15 @@
 git clone https://github.com/username/tg_bot_for_travelling_agency.git
 cd tg_bot_for_travelling_agency
 
-Создаём виртуальное окружение:
+2. Создаём виртуальное окружение:
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
 venv\Scripts\activate     # Windows
 
-Устанавливаем зависимости:
+3. Устанавливаем зависимости:
 pip install -r requirements.txt
 
-Настраиваем .env или config.py с токеном бота и данными для PostgreSQL:
+4. Настраиваем .env или config.py с токеном бота и данными для PostgreSQL:
 API_TOKEN = "ваш_токен_бота"
 DB_USER = "postgres"
 DB_PASSWORD = "пароль"
@@ -50,7 +50,7 @@ DB_NAME = "название_бд"
 DB_HOST = "localhost"
 DB_PORT = 5432
 
-Структура проекта
+🗂 Структура проекта
 travel_bot/
 ├── bot.py
 ├── config.py
@@ -67,5 +67,15 @@ travel_bot/
 │   └── constants.py
 └── requirements.txt
 
-Запуск
+🛠 Используемые технологии
+
+Python 3.11+
+
+Aiogram 3.x
+
+PostgreSQL
+
+asyncpg
+
+⚡ Запуск
 python bot.py
