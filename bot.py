@@ -13,21 +13,21 @@ from handlers.consultation import (
     ConsultationState
 )
 
-from handlers.hotels import hotels_info
-from handlers.contacts import contacts_info
-
 from handlers.tour import (
     choose_tour,
+    process_food,
+    process_stars,
+    process_adults,
+    process_nights,
+    process_region,
+    process_children,
     process_country,
     process_dates,
-    process_budget,
-    back_from_budget,
-    back_from_dates,
-    exit_tour,
-    TourForm
+    TourForm,
+    back_handler, exit_tour, process_place, process_children_age, process_budget,
 )
 
-from keyboards.constants import back, EXIT
+from keyboards.constants import BACK, EXIT
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
@@ -36,7 +36,7 @@ dp.message.register(start_command, Command("start"))
 
 dp.message.register(
     consultation_start,
-    lambda message: message.text == "💬 Проконсультироваться со специалистом"
+    lambda message: message.text == "Замовити консультацію"
 )
 
 dp.message.register(
@@ -45,40 +45,23 @@ dp.message.register(
 )
 
 dp.message.register(
-    hotels_info,
-    lambda message: message.text == "🏨 Отели"
-)
-
-dp.message.register(
-    contacts_info,
-    lambda message: message.text == "📞 Контакты"
-)
-
-dp.message.register(
     choose_tour,
-    lambda message: message.text == "🏖 Подобрать тур самостоятельно"
+    lambda m: m.text == "Залишити заявку на тур"
 )
 
-dp.message.register(
-    back_from_budget,
-    lambda m: m.text == back,
-    TourForm.budget
-)
-
-dp.message.register(
-    back_from_dates,
-    lambda m: m.text == back,
-    TourForm.dates
-)
-
-dp.message.register(back_from_budget, lambda m: m.text == back, TourForm.budget)
-dp.message.register(back_from_dates, lambda m: m.text == back, TourForm.dates)
-dp.message.register(exit_tour, lambda m: m.text == EXIT, TourForm.budget)
-dp.message.register(exit_tour, lambda m: m.text == EXIT, TourForm.dates)
-dp.message.register(exit_tour, lambda m: m.text == EXIT, TourForm.country)
+dp.message.register(exit_tour, lambda m: m.text == EXIT)
+dp.message.register(back_handler, lambda m: m.text == BACK)
 
 dp.message.register(process_country, TourForm.country)
+dp.message.register(process_region, TourForm.region)
+dp.message.register(process_stars, TourForm.stars)
+dp.message.register(process_food, TourForm.food)
+dp.message.register(process_nights, TourForm.nights)
+dp.message.register(process_adults, TourForm.adults)
+dp.message.register(process_children, TourForm.children)
+dp.message.register(process_children_age, TourForm.children_age)
 dp.message.register(process_dates, TourForm.dates)
+dp.message.register(process_place, TourForm.place)
 dp.message.register(process_budget, TourForm.budget)
 
 async def main():
