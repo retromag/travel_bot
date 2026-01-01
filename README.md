@@ -60,7 +60,6 @@ pip install -r requirements.txt
 │ └── tour.py
 ├── keyboards/
 │ ├── init.py
-│ ├── main_menu.py
 │ ├── tour_keyboards.py
 │ └── constants.py
 └── requirements.txt
