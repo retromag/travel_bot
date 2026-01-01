@@ -26,8 +26,8 @@ def regions_kb(country: str):
 
 stars_kb = ReplyKeyboardMarkup(
     keyboard=[
-        [KeyboardButton(text="⭐⭐ 4")],
-        [KeyboardButton(text="⭐⭐⭐ 5")],
+        [KeyboardButton(text="⭐⭐⭐⭐ 4")],
+        [KeyboardButton(text="⭐⭐⭐⭐⭐ 5")],
         [KeyboardButton(text=BACK), KeyboardButton(text=EXIT)]
     ],
     resize_keyboard=True

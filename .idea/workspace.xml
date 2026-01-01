@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b443b533-ca96-4b3c-8598-f82bfd3a4fe7" name="Changes" comment="- added another db for tour request&#10;- added message to manager after user send a consultation question&#10;- deleted main_menu.py and transferred that code to constants.py&#10;- added BACK_STEPS &#10;- refactored consultation.py" />
+    <list default="true" id="b443b533-ca96-4b3c-8598-f82bfd3a4fe7" name="Changes" comment="- updated README.md">
+      <change beforePath="$PROJECT_DIR$/keyboards/tour_keyboards.py" beforeDir="false" afterPath="$PROJECT_DIR$/keyboards/tour_keyboards.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -165,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767279117269</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="- updated README.md">
+      <option name="closed" value="true" />
+      <created>1767289930189</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1767289930189</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -174,6 +184,7 @@
     <MESSAGE value="updated README.md" />
     <MESSAGE value="added tour request structure" />
     <MESSAGE value="- added another db for tour request&#10;- added message to manager after user send a consultation question&#10;- deleted main_menu.py and transferred that code to constants.py&#10;- added BACK_STEPS &#10;- refactored consultation.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="- added another db for tour request&#10;- added message to manager after user send a consultation question&#10;- deleted main_menu.py and transferred that code to constants.py&#10;- added BACK_STEPS &#10;- refactored consultation.py" />
+    <MESSAGE value="- updated README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="- updated README.md" />
   </component>
 </project>
