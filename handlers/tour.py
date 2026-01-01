@@ -168,6 +168,22 @@ async def finish_booking(message: types.Message, state: FSMContext):
         budget=data.get("budget")
     )
 
+    admin_id = 570166124
+    await message.bot.send_message(
+        admin_id,
+        f"Нова заявка:\n"
+        f"👤 {user.full_name} (@{user.username})\n"
+        f"🌍 Країна: {data.get("country")}"
+        f"📍 Регіон: {data.get("region")}"
+        f"⭐ Зірки: {data.get("stars")}"
+        f"🍽 Харчування: {data.get("food")}"
+        f"🌙 Ночі: {data.get("nights")}"
+        f"👨‍👩‍👧 Дорослі: {data.get("adults")}"
+        f"🧒 Діти: {data.get("children")}"
+        f"📅 Дата виїзду: {data.get("dates")}"
+        f"💰 Бюджет: {data.get("budget")}"
+    )
+
     await message.answer(
         "✅ Заявка прийнята!\n\n"
         f"🌍 Країна: {data.get('country', '—')}\n"
