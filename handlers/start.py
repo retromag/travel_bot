@@ -2,7 +2,7 @@
 
 from aiogram import types
 from aiogram.filters import Command
-from keyboards.main_menu import main_menu
+from keyboards.constants import main_menu
 
 async def start_command(message: types.Message):
     await message.answer(

@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b443b533-ca96-4b3c-8598-f82bfd3a4fe7" name="Changes" comment="updated README.md">
+    <list default="true" id="b443b533-ca96-4b3c-8598-f82bfd3a4fe7" name="Changes" comment="added tour request structure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handlers/consultation.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/consultation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handlers/contacts.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/handlers/hotels.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/handlers/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/start.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handlers/tour.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/tour.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/keyboards/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/keyboards/constants.py" afterDir="false" />
@@ -160,13 +160,22 @@
       <option name="project" value="LOCAL" />
       <updated>1767094724871</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="added tour request structure">
+      <option name="closed" value="true" />
+      <created>1767206122117</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1767206122117</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added structure" />
     <MESSAGE value="added README.md" />
     <MESSAGE value="updated README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated README.md" />
+    <MESSAGE value="added tour request structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="added tour request structure" />
   </component>
 </project>

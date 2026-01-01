@@ -10,15 +10,6 @@ countries_kb = ReplyKeyboardMarkup(
     resize_keyboard=True
 )
 
-# dates_kb = ReplyKeyboardMarkup(
-#     keyboard=[
-#         [KeyboardButton(text="Июнь"), KeyboardButton(text="Июль")],
-#         [KeyboardButton(text="Август"), KeyboardButton(text="Сентябрь")],
-#         [KeyboardButton(text=BACK), KeyboardButton(text=EXIT)]
-#     ],
-#     resize_keyboard=True
-# )
-
 regions = {
         "Турція": ["Аланія", "Кемер", BACK],
         "Єгипет": ["Шарм", "Хургада", BACK],

@@ -24,3 +24,19 @@ async def save_consultation(user_id: int, username: str, question: str):
             username,
             question
         )
+
+async def tour_request_save(user_id: int, username: str,country: str, region: str | None, stars: str,
+    food: str, nights: int, adults : int, children: int, children_age: str | None, dates: str, place: str,
+    budget: str):
+    async with db_pool.acquire() as connection:
+        await connection.execute(
+            """
+            INSERT INTO tour_request (user_id, username, country, region, stars, food, nights, adults,
+            children, children_age, dates, place, budget)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
+            """,
+            user_id, username, country,
+            region, stars, food, nights,
+            adults, children, children_age,
+            dates, place, budget
+        )

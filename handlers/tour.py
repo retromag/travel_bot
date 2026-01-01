@@ -3,12 +3,20 @@ from collections import defaultdict
 from aiogram import types
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.context import FSMContext
+
+from database import tour_request_save
 from keyboards.tour_keyboards import (
     countries_kb,
-    stars_kb, regions_kb,
-    food_kb, nights_kb, adults_kb, children_kb, place_kb, budget_kb, regions)
-from keyboards.constants import  month, budget, BACK, EXIT, nav_kb
-from keyboards.main_menu import main_menu
+    stars_kb,
+    regions_kb,
+    food_kb,
+    nights_kb,
+    adults_kb,
+    children_kb,
+    place_kb,
+    budget_kb, regions
+)
+from keyboards.constants import nav_kb, main_menu
 
 class TourForm(StatesGroup):
     country = State()
@@ -31,11 +39,10 @@ async def choose_tour(message: types.Message, state: FSMContext):
     await state.set_state(TourForm.country)
 
 async def process_country(message: types.Message, state: FSMContext):
-    if message.text in [BACK, EXIT]:
-        return
     country = message.text
     await state.update_data(country=country)
     kb = regions_kb(country)
+
     if kb:
         await message.answer(
             "📍 Оберіть регіон:\n(Свій варіант можно ввести з клавіиатури)",
@@ -44,7 +51,7 @@ async def process_country(message: types.Message, state: FSMContext):
         await state.set_state(TourForm.region)
     else:
         await state.update_data(region="Не вказано")
-        # страна введена вручную → регион пропускаем
+
         await message.answer(
             "⭐ Кількість зірок:\n(Свій варіант можно ввести з клавіиатури)",
             reply_markup=stars_kb
@@ -52,8 +59,6 @@ async def process_country(message: types.Message, state: FSMContext):
         await state.set_state(TourForm.stars)
 
 async def process_region(message: types.Message, state: FSMContext):
-    if message.text in [BACK, EXIT]:
-        return
     await state.update_data(region=message.text)
 
     await message.answer(
@@ -63,8 +68,6 @@ async def process_region(message: types.Message, state: FSMContext):
     await state.set_state(TourForm.stars)
 
 async def process_stars(message: types.Message, state: FSMContext):
-    if message.text in [BACK, EXIT]:
-        return
     await state.update_data(stars=message.text)
 
     await message.answer(
@@ -75,9 +78,8 @@ async def process_stars(message: types.Message, state: FSMContext):
     await state.set_state(TourForm.food)
 
 async def process_food(message: types.Message, state: FSMContext):
-    if message.text in [BACK, EXIT]:
-        return
     await state.update_data(food=message.text)
+
     await message.answer(
         "🌙 Кількість ночей:\n(Свій варіант можно ввести з клавіиатури)",
         reply_markup=nights_kb
@@ -85,8 +87,6 @@ async def process_food(message: types.Message, state: FSMContext):
     await state.set_state(TourForm.nights)
 
 async def process_nights(message: types.Message, state: FSMContext):
-    if message.text in [BACK, EXIT]:
-        return
     await state.update_data(nights=message.text)
 
     await message.answer(
@@ -96,9 +96,6 @@ async def process_nights(message: types.Message, state: FSMContext):
     await state.set_state(TourForm.adults)
 
 async def process_adults(message: types.Message, state: FSMContext):
-    if message.text in [BACK, EXIT]:
-        return
-
     await state.update_data(adults=message.text)
 
     await message.answer(
@@ -108,11 +105,9 @@ async def process_adults(message: types.Message, state: FSMContext):
     await state.set_state(TourForm.children)
 
 async def process_children(message: types.Message, state: FSMContext):
-    if message.text in [BACK, EXIT]:
-        return
     count = int(message.text)
-
     await state.update_data(children=count)
+
     if count == 0:
         return await process_children_age(message, state)
     await message.answer(
@@ -122,9 +117,6 @@ async def process_children(message: types.Message, state: FSMContext):
     await state.set_state(TourForm.children_age)
 
 async def process_children_age(message: types.Message, state: FSMContext):
-    if message.text in [BACK, EXIT]:
-        return
-
     await state.update_data(children_age=message.text)
 
     await message.answer(
@@ -134,9 +126,6 @@ async def process_children_age(message: types.Message, state: FSMContext):
     await state.set_state(TourForm.dates)
 
 async def process_dates(message: types.Message, state: FSMContext):
-    if message.text in [BACK, EXIT]:
-        return
-
     await state.update_data(dates=message.text)
 
     await message.answer(
@@ -146,9 +135,6 @@ async def process_dates(message: types.Message, state: FSMContext):
     await state.set_state(TourForm.place)
 
 async def process_place(message: types.Message, state: FSMContext):
-    if message.text in [BACK, EXIT]:
-        return
-
     await state.update_data(place=message.text)
 
     await message.answer(
@@ -158,15 +144,30 @@ async def process_place(message: types.Message, state: FSMContext):
     await state.set_state(TourForm.budget)
 
 async def process_budget(message: types.Message, state: FSMContext):
-    if message.text in [BACK, EXIT]:
-        return
-
     await state.update_data(budget=message.text)
 
     await finish_booking(message, state)
 
 async def finish_booking(message: types.Message, state: FSMContext):
     data = await state.get_data()
+    user = message.from_user
+
+    await tour_request_save(
+        user_id=user.id,
+        username=user.username,
+        country=data.get("country"),
+        region=data.get("region"),
+        stars=data.get("stars"),
+        food=data.get("food"),
+        nights=int(data.get("nights")),
+        adults=int(data.get("adults")),
+        children=int(data.get("children")),
+        children_age=data.get("children_age"),
+        dates=data.get("dates"),
+        place=data.get("place"),
+        budget=data.get("budget")
+    )
+
     await message.answer(
         "✅ Заявка прийнята!\n\n"
         f"🌍 Країна: {data.get('country', '—')}\n"
@@ -191,80 +192,104 @@ async def exit_tour(message: types.Message, state: FSMContext):
         reply_markup=main_menu
     )
 
+BACK_STEPS = {
+    TourForm.region: (
+        TourForm.country,
+        "🌍 Оберіть країну:",
+        lambda _: countries_kb
+    ),
+    TourForm.food: (
+        TourForm.stars,
+        "⭐ Кількість зірок:",
+        lambda _: stars_kb
+    ),
+    TourForm.nights: (
+        TourForm.food,
+        "🍽 Тип харчування:",
+        lambda _: food_kb
+    ),
+    TourForm.adults: (
+        TourForm.nights,
+        "🌙 Кількість ночей:",
+        lambda _: nights_kb
+    ),
+    TourForm.children: (
+        TourForm.adults,
+        "👨‍👩‍👧 Дорослі:",
+        lambda _: adults_kb
+    ),
+    TourForm.children_age: (
+        TourForm.children,
+        "🧒 Кількість дітей:",
+        lambda _: children_kb
+    ),
+    TourForm.place: (
+        TourForm.dates,
+        "📅 Дата виїзду:",
+        lambda _: nav_kb
+    ),
+    TourForm.budget: (
+        TourForm.place,
+        "Відправлення з",
+        lambda _: place_kb
+    ),
+}
+
+async def back_from_dates(message: types.Message, state: FSMContext):
+    data = await state.get_data()
+    children = data.get("children", 0)
+
+    if children == 0:
+        await state.set_state(TourForm.children)
+        await message.answer(
+            "🧒 Кількість дітей:",
+            reply_markup=children_kb
+        )
+    else:
+        await state.set_state(TourForm.children_age)
+        await message.answer(
+            "Введіть вік дітей через кому:",
+            reply_markup=nav_kb
+        )
+
+async def back_from_stars(message: types.Message, state: FSMContext):
+    data = await state.get_data()
+    country = data.get("country")
+
+    if country in regions:
+        await state.set_state(TourForm.region)
+        await message.answer(
+            "📍 Оберіть регіон:",
+            reply_markup=regions_kb(country)
+        )
+    else:
+        await state.set_state(TourForm.country)
+        await message.answer(
+            "🌍 Оберіть країну:",
+            reply_markup=countries_kb
+        )
+
 async def back_handler(message: types.Message, state: FSMContext):
     current = await state.get_state()
+
     if current == TourForm.country:
         await message.answer(
         "Ви повернулися назад",
         reply_markup=main_menu)
 
-    elif current == TourForm.region:
-        await state.set_state(TourForm.country)
-        await message.answer("🌍 Оберіть країну:", reply_markup=countries_kb)
+    if current == TourForm.stars:
+        await back_from_stars(message, state)
+        return
 
-    elif current == TourForm.stars:
-        data = await state.get_data()
-        country = data.get("country")
-        if country in regions:
-            await state.set_state(TourForm.region)
-            await message.answer(
-                "📍 Оберіть регіон:",
-                reply_markup=regions_kb(country)
-            )
-        else:
-            # если страны нет (ввод вручную) — возвращаемся к стране
-            await state.set_state(TourForm.country)
-            await message.answer(
-                "🌍 Оберіть країну:",
-                reply_markup=countries_kb
-            )
+    if current == TourForm.dates:
+        await back_from_dates(message, state)
+        return
 
-    elif current == TourForm.food:
-        await state.set_state(TourForm.stars)
-        await message.answer("⭐ Кількість зірок:", reply_markup=stars_kb)
-
-    elif current == TourForm.nights:
-        await state.set_state(TourForm.food)
-        await message.answer("🍽 Тип харчування:", reply_markup=food_kb)
-
-    elif current == TourForm.adults:
-        await state.set_state(TourForm.nights)
-        await message.answer("🌙 Кількість ночей:", reply_markup=nights_kb)
-
-    elif current == TourForm.children:
-        await state.set_state(TourForm.adults)
-        await message.answer("👨‍👩‍👧 Дорослі:", reply_markup=adults_kb)
-
-    elif current == TourForm.children_age:
-        await state.set_state(TourForm.children)
-        await message.answer("🧒 Кількість дітей:", reply_markup=children_kb)
-
-    elif current == TourForm.dates:
-        data = await state.get_data()
-        children = data.get("children", 0)
-
-        if children == 0:
-            # возрастов не было → возвращаемся к children
-            await state.set_state(TourForm.children)
-            await message.answer(
-                "🧒 Кількість дітей:",
-                reply_markup=children_kb
-            )
-        else:
-            # были дети → возвращаемся к возрасту
-            await state.set_state(TourForm.children_age)
-            await message.answer(
-                "Введіть вік дітей через кому:",
-                reply_markup=nav_kb
-            )
-
-    elif current == TourForm.place:
-        await state.set_state(TourForm.dates)
-        await message.answer("📅 Дата виїзду:", reply_markup=nav_kb)
-
-    elif current == TourForm.budget:
-        await state.set_state(TourForm.place)
-        await message.answer("Відправлення з", reply_markup=place_kb)
-
-    else:
+    step = BACK_STEPS.get(current)
+    if not step:
         await message.answer("Назад неможливо", reply_markup=nav_kb)
+        return
+
+    prev_state, text, kb_factory = step
+    await state.set_state(prev_state)
+    await message.answer(text, reply_markup=kb_factory(None))

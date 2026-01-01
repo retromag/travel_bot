@@ -1,7 +1,7 @@
 import asyncio
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
-from aiogram.filters import Command
+from aiogram.filters import Command, StateFilter
 
 from config import BOT_TOKEN
 from database import connect_db
@@ -9,8 +9,8 @@ from database import connect_db
 from handlers.start import start_command
 from handlers.consultation import (
     consultation_start,
-    consultation_save,
-    ConsultationState
+    ConsultationState, consultation_ack_handler,
+    consultation_question_handler
 )
 
 from handlers.tour import (
@@ -23,8 +23,12 @@ from handlers.tour import (
     process_children,
     process_country,
     process_dates,
+    process_place,
+    process_children_age,
+    process_budget,
     TourForm,
-    back_handler, exit_tour, process_place, process_children_age, process_budget,
+    back_handler,
+    exit_tour
 )
 
 from keyboards.constants import BACK, EXIT
@@ -39,10 +43,9 @@ dp.message.register(
     lambda message: message.text == "Замовити консультацію"
 )
 
-dp.message.register(
-    consultation_save,
-    ConsultationState.waiting_for_question
-)
+dp.message.register(consultation_ack_handler, StateFilter(ConsultationState.waiting_for_ack))
+dp.message.register(consultation_question_handler, StateFilter(ConsultationState.waiting_for_question))
+
 
 dp.message.register(
     choose_tour,
