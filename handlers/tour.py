@@ -159,7 +159,7 @@ async def finish_booking(message: types.Message, state: FSMContext):
         region=data.get("region"),
         stars=data.get("stars"),
         food=data.get("food"),
-        nights=int(data.get("nights")),
+        nights=data.get("nights"),
         adults=int(data.get("adults")),
         children=int(data.get("children")),
         children_age=data.get("children_age"),

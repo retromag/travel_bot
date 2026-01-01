@@ -26,7 +26,7 @@ async def save_consultation(user_id: int, username: str, question: str):
         )
 
 async def tour_request_save(user_id: int, username: str,country: str, region: str | None, stars: str,
-    food: str, nights: int, adults : int, children: int, children_age: str | None, dates: str, place: str,
+    food: str, nights: str, adults : int, children: int, children_age: str | None, dates: str, place: str,
     budget: str):
     async with db_pool.acquire() as connection:
         await connection.execute(
