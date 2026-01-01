@@ -81,18 +81,3 @@ async def consultation_question_handler(message: types.Message, state: FSMContex
         )
 
     await state.clear()
-
-
-# async def consultation_save(message: types.Message, state: FSMContext):
-#     await save_consultation(
-#         user_id=message.from_user.id,
-#         username=message.from_user.username,
-#         question=message.text
-#     )
-#
-#     await state.clear()
-#
-#     await message.answer(
-#         "✅ Ваша заявка відправлена!\n"
-#         "Наш спеціаліст з вами зв'яжеться 📞"
-#     )

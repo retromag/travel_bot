@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b443b533-ca96-4b3c-8598-f82bfd3a4fe7" name="Changes" comment="- updated README.md">
-      <change beforePath="$PROJECT_DIR$/keyboards/tour_keyboards.py" beforeDir="false" afterPath="$PROJECT_DIR$/keyboards/tour_keyboards.py" afterDir="false" />
+    <list default="true" id="b443b533-ca96-4b3c-8598-f82bfd3a4fe7" name="Changes" comment="- updated stars">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handlers/tour.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/tour.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +176,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767289930189</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="- updated stars">
+      <option name="closed" value="true" />
+      <created>1767290169052</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1767290169052</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -185,6 +194,7 @@
     <MESSAGE value="added tour request structure" />
     <MESSAGE value="- added another db for tour request&#10;- added message to manager after user send a consultation question&#10;- deleted main_menu.py and transferred that code to constants.py&#10;- added BACK_STEPS &#10;- refactored consultation.py" />
     <MESSAGE value="- updated README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="- updated README.md" />
+    <MESSAGE value="- updated stars" />
+    <option name="LAST_COMMIT_MESSAGE" value="- updated stars" />
   </component>
 </project>

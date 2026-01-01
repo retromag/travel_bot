@@ -193,6 +193,11 @@ async def exit_tour(message: types.Message, state: FSMContext):
     )
 
 BACK_STEPS = {
+    TourForm.country: (
+        None,
+        "Ви повернулися у головне меню",
+        lambda _: main_menu
+    ),
     TourForm.region: (
         TourForm.country,
         "🌍 Оберіть країну:",
@@ -271,11 +276,6 @@ async def back_from_stars(message: types.Message, state: FSMContext):
 
 async def back_handler(message: types.Message, state: FSMContext):
     current = await state.get_state()
-
-    if current == TourForm.country:
-        await message.answer(
-        "Ви повернулися назад",
-        reply_markup=main_menu)
 
     if current == TourForm.stars:
         await back_from_stars(message, state)
